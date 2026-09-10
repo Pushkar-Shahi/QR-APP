@@ -24,7 +24,7 @@ export const Route = createFileRoute("/scan")({
 function extractSessionId(text: string): string | null {
   const trimmed = text.trim();
   const m = trimmed.match(/\/r\/([a-z0-9]{6,32})/i);
-  if (m) return m[1].toLowerCase();
+  if (m?.[1]) return m[1].toLowerCase();
   if (isValidSessionId(trimmed.toLowerCase())) return trimmed.toLowerCase();
   return null;
 }

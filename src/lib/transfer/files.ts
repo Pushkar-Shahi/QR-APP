@@ -37,8 +37,8 @@ async function walkEntry(entry: EntryLike, prefix: string, out: SelectedFile[]) 
 export async function fromDataTransfer(dt: DataTransfer): Promise<SelectedFile[]> {
   const items = Array.from(dt.items ?? []);
   const entries = items
-    .map((it) => (it as DataTransferItem & { webkitGetAsEntry?: () => EntryLike | null }).webkitGetAsEntry?.())
-    .filter((e): e is EntryLike => !!e);
+    .map((it) => (it as unknown as { webkitGetAsEntry?: () => EntryLike | null }).webkitGetAsEntry?.() ?? null)
+    .filter((e): e is EntryLike => e != null);
 
   if (entries.length === 0) return fromFileList(dt.files);
 

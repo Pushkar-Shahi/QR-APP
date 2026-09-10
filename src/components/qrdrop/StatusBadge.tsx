@@ -18,7 +18,7 @@ const dots: Record<Tone, string> = {
   danger: "bg-destructive",
 };
 
-export function StatusBadge({ tone, label, pulse }: { tone: Tone; label: string; pulse?: boolean }) {
+export function StatusBadge({ tone, label, pulse }: { tone: Tone; label: string; pulse?: boolean | undefined }) {
   return (
     <span className={cn("inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-xs font-medium uppercase tracking-wider", tones[tone])}>
       <span className="relative flex size-2">

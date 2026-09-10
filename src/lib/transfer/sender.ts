@@ -91,7 +91,9 @@ export async function sendFiles(
   let filesDone = 0;
 
   for (let fileIndex = 0; fileIndex < files.length; fileIndex++) {
-    const { file } = files[fileIndex];
+    const entry = files[fileIndex];
+    if (!entry) continue;
+    const { file } = entry;
     let offset = 0;
     let chunkIndex = 0;
     let fileBytes = 0;

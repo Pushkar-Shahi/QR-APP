@@ -90,6 +90,7 @@ export function receiveFiles(
           if (!f) {
             // zero-byte file
             const fm = meta.files[msg.fileIndex];
+            if (!fm) throw new Error(`Unknown file index ${msg.fileIndex}`);
             const opened = await factory.open(fm);
             f = { ...opened, expectedChunk: 0, bytes: 0 };
           }

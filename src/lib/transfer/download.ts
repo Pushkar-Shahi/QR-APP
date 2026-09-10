@@ -108,7 +108,7 @@ function baseName(path: string) {
 async function writableSink(handle: FileSystemFileHandle): Promise<FileSink> {
   const writable = await handle.createWritable();
   return new BufferedSink(
-    (data) => writable.write(data),
+    (data) => writable.write(data as unknown as ArrayBuffer),
     () => writable.close(),
   );
 }
@@ -242,7 +242,7 @@ function blobFactory(): SinkFactory {
  * (the Accept click) so the native pickers are allowed to open.
  */
 export async function chooseSinkFactory(files: FileMeta[], sessionId: string): Promise<SinkFactory> {
-  const fsa = files.length === 1 ? await fsaSingleFactory(files[0]) : await fsaDirectoryFactory();
+  const fsa = files.length === 1 && files[0] ? await fsaSingleFactory(files[0]) : await fsaDirectoryFactory();
   if (fsa) return fsa;
   const opfs = await opfsFactory(sessionId);
   if (opfs) return opfs;

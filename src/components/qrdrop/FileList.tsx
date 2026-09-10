@@ -28,10 +28,10 @@ export const FileList = memo(function FileList({
   className,
 }: {
   files: FileRow[];
-  onRemove?: (index: number) => void;
-  activeIndex?: number;
-  doneCount?: number;
-  className?: string;
+  onRemove?: ((index: number) => void) | undefined;
+  activeIndex?: number | undefined;
+  doneCount?: number | undefined;
+  className?: string | undefined;
 }) {
   return (
     <ul className={cn("divide-y divide-border overflow-hidden rounded-lg border bg-card", className)}>
