@@ -14,7 +14,11 @@ export function createPeerConnection(iceServers: RTCIceServer[], handlers: PeerH
   pc.onicecandidate = (e) => {
     if (e.candidate) handlers.onIceCandidate(e.candidate.toJSON());
   };
-  pc.onconnectionstatechange = () => handlers.onConnectionState(pc.connectionState);
+  pc.onconnectionstatechange = () => {
+    console.debug(`[qrdrop] connection ${pc.connectionState}`);
+    handlers.onConnectionState(pc.connectionState);
+  };
+  pc.onicegatheringstatechange = () => console.debug(`[qrdrop] ice-gathering ${pc.iceGatheringState}`);
   if (handlers.onDataChannel) {
     pc.ondatachannel = (e) => handlers.onDataChannel?.(e.channel);
   }

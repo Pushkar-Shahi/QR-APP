@@ -40,6 +40,7 @@ export function createSignaling(sessionId: string, role: Role): Signaling {
   channel.on("broadcast", { event: "signal" }, ({ payload }) => {
     const env = payload as Envelope;
     if (!env || env.role === role) return;
+    console.debug(`[qrdrop:${role}] <- ${env.msg.type}`);
     for (const fn of listeners) fn(env.msg);
   });
 
