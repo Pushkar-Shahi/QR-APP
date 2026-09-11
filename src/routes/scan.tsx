@@ -47,10 +47,10 @@ function ScanPage() {
   );
 
   return (
-    <div className="mx-auto max-w-md space-y-6">
-      <div>
+    <div className="mx-auto w-full max-w-full max-w-md space-y-6 overflow-x-hidden">
+      <div className="max-w-full">
         <h1 className="font-display text-3xl font-bold tracking-tight">Scan to receive</h1>
-        <p className="mt-1 text-sm text-muted-foreground">Point the camera at the QR code on the sending device.</p>
+        <p className="mt-1 max-w-full text-sm text-muted-foreground">Point the camera at the QR code on the sending device.</p>
       </div>
 
       <QRScanner onResult={go} />
