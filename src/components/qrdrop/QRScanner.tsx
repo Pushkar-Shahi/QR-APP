@@ -52,29 +52,31 @@ export function QRScanner({ onResult }: { onResult: (text: string) => void }) {
   }, [onResult]);
 
   return (
-    <div className="relative aspect-square w-full overflow-hidden rounded-2xl border bg-foreground/90">
-      <video ref={videoRef} className="size-full object-cover" muted playsInline />
-      {state === "scanning" && (
-        <div className="pointer-events-none absolute inset-0 grid place-items-center">
-          <div className="relative size-[62%] rounded-lg border-2 border-primary/70">
-            <div className="absolute inset-x-2 top-1/2 h-0.5 bg-primary shadow-[0_0_14px_var(--color-primary)] animate-scan" />
+    <div className="mx-auto w-full max-w-full overflow-hidden">
+      <div className="relative mx-auto aspect-square w-full max-w-full max-h-[60vh] overflow-hidden rounded-2xl border bg-foreground/90 sm:aspect-[4/3]">
+        <video ref={videoRef} className="absolute inset-0 size-full max-w-full max-h-full object-cover" muted playsInline />
+        {state === "scanning" && (
+          <div className="pointer-events-none absolute inset-0 grid place-items-center">
+            <div className="relative size-[62%] rounded-lg border-2 border-primary/70">
+              <div className="absolute inset-x-2 top-1/2 h-0.5 bg-primary shadow-[0_0_14px_var(--color-primary)] animate-scan" />
+            </div>
           </div>
-        </div>
-      )}
-      {state !== "scanning" && (
-        <div className="absolute inset-0 grid place-items-center bg-card/95 p-6 text-center">
-          <div className="space-y-2">
-            {state === "starting" ? <Camera className="mx-auto size-7 animate-pulse text-primary" /> : <CameraOff className="mx-auto size-7 text-muted-foreground" />}
-            <p className="text-sm font-medium">
-              {state === "starting" && "Starting camera…"}
-              {state === "no-camera" && "No camera found on this device."}
-              {state === "denied" && "Camera access was blocked."}
-              {state === "error" && "Couldn't start the camera."}
-            </p>
-            {state !== "starting" && <p className="text-xs text-muted-foreground">Paste the transfer link below instead.</p>}
+        )}
+        {state !== "scanning" && (
+          <div className="absolute inset-0 grid place-items-center bg-card/95 p-6 text-center">
+            <div className="space-y-2">
+              {state === "starting" ? <Camera className="mx-auto size-7 animate-pulse text-primary" /> : <CameraOff className="mx-auto size-7 text-muted-foreground" />}
+              <p className="text-sm font-medium">
+                {state === "starting" && "Starting camera…"}
+                {state === "no-camera" && "No camera found on this device."}
+                {state === "denied" && "Camera access was blocked."}
+                {state === "error" && "Couldn't start the camera."}
+              </p>
+              {state !== "starting" && <p className="text-xs text-muted-foreground">Paste the transfer link below instead.</p>}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
