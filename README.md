@@ -579,3 +579,10 @@ recording of a successful large transfer ready.
   never written to a database.
 - Session ids are cryptographically random and exist only in the QR code and the two open tabs.
 - No accounts, no cookies for identity, no transfer history, nothing to delete afterwards.
+- 
+---
+
+## Deployment link
+- https://qr-application.riseinspirethrive2008.workers.dev/
+
+
